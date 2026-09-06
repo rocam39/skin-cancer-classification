@@ -8,13 +8,13 @@ This project uses transfer learning with ResNet-50 pretrained on ImageNet to cla
 
 The model performs seven-class classification and uses techniques such as:
 
-* Transfer learning
-* Dropout regularization
-* L2 regularization
-* Class-weighted loss
-* Learning-rate scheduling
-* Early stopping
-* Gradient clipping
+- Transfer learning
+- Dropout regularization
+- L2 regularization
+- Class-weighted loss
+- Learning-rate scheduling
+- Early stopping
+- Gradient clipping
 
 A separate prediction script allows a trained model to classify a new skin-lesion image.
 
@@ -22,15 +22,15 @@ A separate prediction script allows a trained model to classify a new skin-lesio
 
 The model predicts seven categories:
 
-| Code    | Diagnosis                           |
-| ------- | ----------------------------------- |
-| `nv`    | Melanocytic nevi                    |
-| `mel`   | Melanoma                            |
-| `df`    | Dermatofibroma                      |
+| Code | Diagnosis |
+|---|---|
+| `nv` | Melanocytic nevi |
+| `mel` | Melanoma |
+| `df` | Dermatofibroma |
 | `akiec` | Actinic keratoses / Bowen's disease |
-| `bcc`   | Basal cell carcinoma                |
-| `bkl`   | Benign keratosis-like lesions       |
-| `vasc`  | Vascular lesions                    |
+| `bcc` | Basal cell carcinoma |
+| `bkl` | Benign keratosis-like lesions |
+| `vasc` | Vascular lesions |
 
 ## Model Architecture
 
@@ -62,34 +62,34 @@ The dataset itself is **not included in this repository** because of its size.
 
 The dataset is divided into:
 
-* 70% training
-* 15% validation
-* 15% testing
+- 70% training
+- 15% validation
+- 15% testing
 
 The training pipeline includes:
 
-* Image resizing to `224 × 224`
-* Random horizontal flipping
-* Random rotation
-* Random resized cropping
-* ImageNet normalization
-* Class-weighted cross-entropy loss
-* Adam optimizer
-* Learning-rate reduction on validation-loss plateau
-* Early stopping
-* Gradient clipping
+- Image resizing to `224 × 224`
+- Random horizontal flipping
+- Random rotation
+- Random resized cropping
+- ImageNet normalization
+- Class-weighted cross-entropy loss
+- Adam optimizer
+- Learning-rate reduction on validation-loss plateau
+- Early stopping
+- Gradient clipping
 
-The best model is selected using validation performance.
+The best model is selected using validation performance. The test set is reserved for final evaluation.
 
 ## Prediction
 
-`predict.py` loads the trained ResNet-50 model and label encoder, preprocesses an input image, and returns:
+`predict.py` loads the trained ResNet-50 model and label encoder, preprocesses a new image, and returns:
 
-* Predicted class
-* Class index
-* Prediction confidence
-* Diagnostic category
-* Benign/malignant classification
+- Predicted class
+- Class index
+- Prediction confidence
+- Diagnostic category
+- Benign/malignant classification
 
 Run the prediction script with:
 
@@ -99,11 +99,31 @@ python predict.py
 
 The script will ask for the path of the image to classify.
 
+### Model Weights
+
+The trained `.pth` model weights are **not included in this repository due to their file size**.
+
+The model can be reproduced by running:
+
+```bash
+python train.py
+```
+
+After training, the model weights will be saved to:
+
+```text
+models/best_skin_cancer_resnet50_model.pth
+```
+
+The label encoder is also generated during training.
+
 ## Installation
 
 Clone the repository and install the required dependencies:
 
 ```bash
+git clone <your-repository-url>
+cd skin-cancer-classification
 pip install -r requirements.txt
 ```
 
@@ -119,20 +139,19 @@ skin-cancer-classification/
 ├── .gitignore
 │
 └── models/
-    ├── best_skin_cancer_resnet50_model.pth
-    └── label_encoder.pkl
+    └── (generated model files)
 ```
 
-The dataset should be stored locally and is not included in the repository.
+The HAM10000 dataset should be downloaded separately and stored locally. It is not included in the repository because of its size.
 
 ## Results
 
 The training script generates:
 
-* Training and validation accuracy curves
-* Confusion matrix
-* Classification report
-* Final test-set evaluation
+- Training and validation accuracy curves
+- Confusion matrix
+- Classification report
+- Final test-set evaluation
 
 ## Disclaimer
 
@@ -140,14 +159,14 @@ This project is intended for educational and research purposes only. It is not a
 
 ## Technologies
 
-* Python
-* PyTorch
-* Torchvision
-* OpenCV
-* NumPy
-* Pandas
-* Scikit-learn
-* Matplotlib
-* Seaborn
-* Joblib
-* Pillow
+- Python
+- PyTorch
+- Torchvision
+- OpenCV
+- NumPy
+- Pandas
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Joblib
+- Pillow
