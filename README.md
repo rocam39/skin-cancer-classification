@@ -1,4 +1,3 @@
-# skin-cancer-classification
 # Skin Cancer Classification Using ResNet-50
 
 A deep learning-based image classification system for classifying skin lesions into seven diagnostic categories using a pretrained ResNet-50 convolutional neural network.
